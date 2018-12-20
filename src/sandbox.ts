@@ -57,7 +57,7 @@ const deploy: Function = async (): Promise<void> => {
     );
 
     const assetOwnerPK: string = '0xfaab95e72c3ac39f7c060125d9eca3558758bb248d1a4cdc9c1b7fd3f91a4485';
-    const assetOwnerAddress: string = web3.eth.accounts.privateKeyToAccount(assetOwnerPK).address;
+    const assetOwnerAddress: string = web3.eth.accounts.privateKeyToAccount(assetOwnerPK).address; 
 
     const assetSmartmeterPK: string = '0x2dc5120c26df339dbd9861a0f39a79d87e0638d30fdedc938861beac77bbd3f5';
     const assetSmartmeter: string = web3.eth.accounts.privateKeyToAccount(assetSmartmeterPK).address;
@@ -65,17 +65,22 @@ const deploy: Function = async (): Promise<void> => {
     const matcherPK: string = '0xc118b0425221384fe0cbbd093b2a81b1b65d0330810e0792c7059e518cea5383';
     const matcher: string = web3.eth.accounts.privateKeyToAccount(matcherPK).address;
 
+    web3.eth.accounts.wallet.add('0xfaab95e72c3ac39f7c060125d9eca3558758bb248d1a4cdc9c1b7fd3f91a4485')
+    web3.eth.accounts.wallet.add('0x2dc5120c26df339dbd9861a0f39a79d87e0638d30fdedc938861beac77bbd3f5')
+    web3.eth.accounts.wallet.add('0xc118b0425221384fe0cbbd093b2a81b1b65d0330810e0792c7059e518cea5383')
+    web3.eth.accounts.wallet.add(privateKeyForDeployment)
+
     await userLogic.setUser(assetOwnerAddress, 'assetOwner', { privateKey: privateKeyForDeployment });
     await userLogic.setRoles(assetOwnerAddress, 8, { privateKey: privateKeyForDeployment });
 
     const conf: any = {
         blockchainProperties: {
             activeUser: {
-                address: accountForDeployment, privateKey: privateKeyForDeployment,
+                address: accountForDeployment, privateKey: privateKeyForDeployment
             },
-            producingAssetLogicInstance: assetProducingLogic,
-            consumingAssetLogicInstance: assetConsumingLogic,
-            userLogicInstance: userLogic,
+            producingAssetLogicInstance: assetProducingLogic.web3Contract,
+            consumingAssetLogicInstance: assetConsumingLogic.web3Contract,
+            userLogicInstance: userLogic.web3Contract,
             web3
         },
         offChainDataSource: {

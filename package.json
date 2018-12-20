@@ -8,7 +8,8 @@
     "start-ganache": "ganache-cli -m 'chalk park staff buzz chair purchase wise oak receive avoid avoid home' -g 0 -l 80000000 -e 1000000 -a 20",
     "start-test-backend": "node node_modules/ew-utils-testbackend/index.js",
     "build-ts": "rm -rf dist/js && node_modules/typescript/bin/tsc",
-    "start": "node dist/js/sandbox.js"
+    "start": "node dist/js/sandbox.js",
+    "debug": "node --inspect-brk dist/js/sandbox.js"
   },
   "repository": {
     "type": "git",
@@ -20,11 +21,11 @@
     "@types/web3": "^1.0.12",
     "axios": "^0.18.0",
     "ethereumjs-tx": "^1.3.7",
-    "ew-asset-registry-contracts": "v0.1.6",
-    "ew-asset-registry-lib": "0.0.3",
-    "ew-user-registry-contracts": "0.0.6",
-    "ew-utils-general-lib": "0.0.2",
-    "ew-utils-testbackend": "0.0.4",
+    "ew-asset-registry-contracts": "git+https://github.com/energywebfoundation/origin-asset-registry-contracts.git",
+    "ew-asset-registry-lib": "git+https://github.com/energywebfoundation/origin-asset-registry-lib.git",
+    "ew-user-registry-contracts": "git+https://github.com/energywebfoundation/origin-user-registry-contracts.git",
+    "ew-utils-general-lib": "git+https://github.com/energywebfoundation/origin-utils-general-lib.git",
+    "ew-utils-testbackend": "git+https://github.com/energywebfoundation/origin-utils-testbackend.git",
     "web3": "^1.0.0-beta.36",
     "winston": "^3.1.0"
   },
