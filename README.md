@@ -9,7 +9,7 @@ Release B will not be published in its entirety at once. Currently the following
 * Asset Registry
   * [origin-asset-registry-contracts](https://github.com/energywebfoundation/origin-asset-registry-contracts)
   * [origin-asset-registry-lib](https://github.com/energywebfoundation/origin-asset-registry-lib)
-  * [origin-asset-registry-frontend](origin-asset-registry-frontend) 
+  * [origin-asset-registry-frontend](https://github.com/energywebfoundation/origin-asset-registry-frontend) 
 * User Registry
   * [origin-user-registry-contracts](https://github.com/energywebfoundation/origin-user-registry-contracts)
 * Utils
@@ -30,5 +30,5 @@ Coming soon:
 3. Start test backend `npm run start-test-backend`
 4. Build demo code `npm run build-ts`
 5. Start demo `npm start`
-6. Use [origin-asset-registry-frontend](origin-asset-registry-frontend) to see the assets.
+6. Use [origin-asset-registry-frontend](https://github.com/energywebfoundation/origin-asset-registry-frontend) to see the assets.
 
