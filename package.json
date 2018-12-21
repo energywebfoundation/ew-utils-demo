@@ -8,8 +8,8 @@
     "start-ganache": "ganache-cli -m 'chalk park staff buzz chair purchase wise oak receive avoid avoid home' -g 0 -l 80000000 -e 1000000 -a 20",
     "start-test-backend": "node node_modules/ew-utils-testbackend/index.js",
     "build-ts": "rm -rf dist/js && node_modules/typescript/bin/tsc",
-    "start": "node dist/js/sandbox.js",
-    "debug": "node --inspect-brk dist/js/sandbox.js"
+    "start": "node dist/js/demo.js",
+    "debug": "node --inspect-brk dist/js/demo.js"
   },
   "repository": {
     "type": "git",

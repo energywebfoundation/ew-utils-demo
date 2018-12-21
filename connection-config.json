@@ -1,6 +1,10 @@
 {
     "develop": {
         "web3": "http://localhost:8545",
-        "deployKey": "d7410fb6e0c10ce73cc3179f73e7bb6adabbe8fb17570a47eb8195e17ed0c3f4"
+        "offChainDataSourceBaseUrl": "http://localhost:3030",
+        "deployKey": "d7410fb6e0c10ce73cc3179f73e7bb6adabbe8fb17570a47eb8195e17ed0c3f4",
+        "assetOwnerPK": "0xfaab95e72c3ac39f7c060125d9eca3558758bb248d1a4cdc9c1b7fd3f91a4485",
+        "assetSmartmeterPK": "0x2dc5120c26df339dbd9861a0f39a79d87e0638d30fdedc938861beac77bbd3f5",
+        "matcherPK": "0xc118b0425221384fe0cbbd093b2a81b1b65d0330810e0792c7059e518cea5383"
     }
 }
