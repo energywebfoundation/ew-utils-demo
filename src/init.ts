@@ -73,7 +73,7 @@ export const init: () => Promise<any> = async (): Promise<any> => {
     web3.eth.accounts.wallet.add('0xc118b0425221384fe0cbbd093b2a81b1b65d0330810e0792c7059e518cea5383');
     web3.eth.accounts.wallet.add(privateKeyForDeployment);
 
-    await userLogic.setUser(assetOwnerAddress, 'assetOwner', { privateKey: privateKeyForDeployment });
+    await userLogic.setUser(assetOwnerAddress, 'Max Miller', { privateKey: privateKeyForDeployment });
     await userLogic.setRoles(assetOwnerAddress, 8, { privateKey: privateKeyForDeployment });
 
     return {
