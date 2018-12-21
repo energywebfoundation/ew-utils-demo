@@ -9,7 +9,6 @@ Release B will not be published in its entirety at once. Currently the following
 * Asset Registry
   * [origin-asset-registry-contracts](https://github.com/energywebfoundation/origin-asset-registry-contracts)
   * [origin-asset-registry-lib](https://github.com/energywebfoundation/origin-asset-registry-lib)
-  * [origin-asset-registry-frontend](https://github.com/energywebfoundation/origin-asset-registry-frontend) 
 * User Registry
   * [origin-user-registry-contracts](https://github.com/energywebfoundation/origin-user-registry-contracts)
 * Utils

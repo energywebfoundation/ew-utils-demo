@@ -15,8 +15,6 @@
     "type": "git",
     "url": "https://git.slock.it/ewf/origin/utils/ew-utils-demo.git"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@types/web3": "^1.0.12",
     "axios": "^0.18.0",
