@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://git.slock.it/ewf/origin/utils/ew-utils-demo.git"
+    "url": "https://github.com/energywebfoundation/origin-utils-demo.git"
   },
   "dependencies": {
     "@types/web3": "^1.0.12",
