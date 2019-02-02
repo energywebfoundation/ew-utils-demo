@@ -24,6 +24,8 @@ function sleep(ms) {
 
 export const marketDemo = async() => {
 
+  const startTime = Date.now()
+
   await deployEmptyContracts()
 
   const connectionConfig = JSON.parse(fs.readFileSync(process.cwd() + '/connection-config.json', 'utf8').toString());
@@ -640,6 +642,7 @@ export const marketDemo = async() => {
         continue
     }
   }
+  console.log("Total Time: " + ((Date.now()-startTime)/1000) + " seconds")
 }
 
 marketDemo()
