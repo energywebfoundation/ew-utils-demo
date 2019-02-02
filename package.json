@@ -19,7 +19,7 @@
     "build": "npm run compile-contracts && npm run build-ts && npm run build-schemas",
     "precompile-contracts": "rm -rf build/contracts",
     "compile-contracts": "node build/ts/utils/deployment/compile",
-    "start-demo": "npm run build-ts && node dist/js/market",
+    "start-demo": "npm run build-ts && node dist/js/demo",
     "deploy-empty": "npm run build-ts && node dist/js/deployEmpty",
     "prebuild-ts": "rm -rf build/ts",
     "build-ts": "rm -rf dist/js && node_modules/typescript/bin/tsc && cp src/types/*.d.ts dist/js/types/",
