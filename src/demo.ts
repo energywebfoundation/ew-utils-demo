@@ -204,7 +204,7 @@ export const marketDemo = async() => {
         break
 
       case "SLEEP":
-        console.log("sleep")
+        console.log("SLEEP: " + action.data)
         await sleep(action.data);
         break
 
@@ -256,7 +256,7 @@ export const marketDemo = async() => {
           };
 
           try {
-            await assetProducingRegistryLogic.setMarketLookupContract(action.data.assetId, contractConfig.originContractLookup, { privateKey: action.data.assetOwnerPK });
+            await conf.blockchainProperties.producingAssetLogicInstance.setMarketLookupContract(action.data.assetId, contractConfig.originContractLookup, { privateKey: action.data.assetOwnerPK });
             console.log("Certificates for Asset #" + action.data.assetId + " initialized")
           } catch(e) {
             console.log("Error intializing certificates\n" + e)
