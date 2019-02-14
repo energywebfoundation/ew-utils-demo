@@ -117,8 +117,25 @@
     * ew-origin-contracts
     * ew-origin-lib
 ### smart contracts
+* created "OriginContractLookup" contract: smart contract that stores the address of the current logic contract (can be used for ENS)
+* logging energy will create a TradableEntity
+    * owner of the producing asset will be the first owner of the created entity
+    * TradableEntities support up to 10 matcher
+    * TradableEntity are ERC721 and ERC165 compliant
+    * added ERC20-contract address and directPurchasePrice to a tradableEntity -> allows direct buying of a TradableEntity (when ERC20 token transfer is finished)
+* TradableEntities can either be stand-alone TradableEntities, Certificates or CertificateEnergyBundle
+* Certificates:
+    * assetOwner can set a maximum amount of owner changes for certificates
+    * auto-retirement of certificates when the maximum amount of owner changes is reached
+    * splitting of certificates: 
+        * a certificate can be split into to child certificates which will inherit its parent properties (and could be split again)
+        * once a certificate is split it cannot be traded / split / retired anymore
+* created npm-package for ew-market-registry
+    * typescript bindings for smart contracts
+    * function to deploy contracts (as certificate or bundle of certificates and energy)
 
 ### origin lib
+* changed library functions to both support a privateKey or an address when sending a transaction
 
 ## user-registry
 ### smart contracts
