@@ -22,7 +22,7 @@
     "start-demo": "npm run build-ts && node dist/js/market",
     "deploy-empty": "npm run build-ts && node dist/js/deployEmpty",
     "prebuild-ts": "rm -rf build/ts",
-    "build-ts": "rm -rf dist/js && node_modules/typescript/bin/tsc && cp src/types/*.d.ts dist/js/types/",
+    "build-ts": "rm -rf dist/js && node_modules/typescript/bin/tsc",
     "prebuild-schemas": "rm -rf dist/schemas && mkdir dist/schemas",
     "build-schemas": "npm run build-schema:AssetPropertiesOffChain && npm run build-schema:ProducingAssetPropertiesOffChain",
     "build-schema:AssetPropertiesOffChain": "typescript-json-schema --ignoreErrors --required src/blockchain-facade/Asset.ts OffChainProperties > dist/schemas/AssetPropertiesOffChain.schema.json",

@@ -56,7 +56,6 @@ export const onboardDemo = async(actionString: string, conf: GeneralLib.Configur
 
 
       const assetProducingProps: Asset.ProducingAsset.OnChainProperties = {
-          certificatesUsedForWh: action.data.certificatesCreatedForWh,
           smartMeter: { address: action.data.smartMeter },
           owner: { address: action.data.owner },
           lastSmartMeterReadWh: action.data.lastSmartMeterReadWh,
@@ -65,8 +64,6 @@ export const onboardDemo = async(actionString: string, conf: GeneralLib.Configur
           matcher: [{address: action.data.matcher}],
           propertiesDocumentHash: null,
           url: null,
-          certificatesCreatedForWh: action.data.certificatesCreatedForWh,
-          lastSmartMeterCO2OffsetRead: action.data.lastSmartMeterCO2OffsetRead,
           maxOwnerChanges: action.data.maxOwnerChanges,
       };
 
