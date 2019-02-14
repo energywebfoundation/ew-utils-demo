@@ -45,7 +45,7 @@
     "ew-market-contracts": "0.1.1",
     "ew-user-registry-lib": "0.1.1",
     "ew-asset-registry-lib": "0.1.1",
-    "ew-origin-lib": "0.1.0",
+    "ew-origin-lib": "0.1.1",
     "ew-market-lib": "0.1.0",
     "ew-utils-general-lib": "0.0.21",
     "ew-utils-testbackend": "0.0.8-release",
