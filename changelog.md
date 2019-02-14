@@ -23,7 +23,6 @@
 * created simple backend for testing origin
 
 ## asset-registry
-
     * separate repository for assets 
 
 ### smart contracts 
