@@ -22,6 +22,7 @@
 * moved many onchain-properties to be stored offchain 
 * created simple backend for testing origin
 * updated all contracts to Solidity > 0.5.0
+* smart contracts are backwards compatible to truffle 
 
 ## asset-registry
 * created separate repositories for assets: 
@@ -84,6 +85,7 @@
 ### market lib
 * precise proofs are used to storing and receiving offchain properties for demand, supply and agreement
 * changed library functions to both support a privateKey or an address when sending a transaction
+
 * new offchain properties for agreements
     * start
     * end
@@ -138,11 +140,29 @@
 * changed library functions to both support a privateKey or an address when sending a transaction
 
 ## user-registry
+* created separate repositories for the user-registry
+    * ew-user-contracts
+    * ew-user-lib
 ### smart contracts
+* created "OriginContractLookup" contract: smart contract that stores the address of the current logic contract (can be used for ENS)
+* removed most of the onchain-user properties
 ### user lib
+* adjusted user-lib to the smart contract changes
 
 ## utils
-
+### ew-utils-general-contracts
+* created repository for small contracts that are used in multiple repositories (e.g. Owned)
+### ew-utils-general-lib  
+* created repository for facade-functions that are used in all the specific repositories
+### ew-utils-general-precise-proofs
+### ew-utils-demo
+* created repository for demo purpose, can be freely configured
+### ew-utils-deployment 
+* created repository with a deploy function for smart contracts
+### ew-utils-testbackend
+* created repository for a small testbackend for storing offchain-properties
+### ew-utils-testtoken 
+* created repository with a small ERC20 example contract
 
 
 
