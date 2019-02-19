@@ -1,28 +1,53 @@
 # origin release B
 
-## general
-* split up the repositories
-    * ew-asset-registry-contracts
-    * ew-asset-registry-lib
-    * ew-asset-registry-frontend
-    * ew-market-contracts
-    * ew-market-lib
-    * ew-origin-contracts
-    * ew-origin-lib
-    * ew-user-registry-contracts
-    * ew-user-lib
-    * ew-utils-general-contracts
-    * ew-utils-general-lib  
-    * ew-utils-general-precise-proofs
-    * ew-utils-demo
-    * ew-utils-deployment 
-    * ew-utils-testbackend
-    * ew-utils-testtoken 
+## Main Changes
+* New **privacy** features:
+    * Moved many onchain properties to **offchain storage** 
+    * Added **precise proof** functionality
+* Enhanced **market** functionality:
+    * Certificates can be **split**
+    * Certificates support **direct purchases** with ERC20 tokens
+    * **Demand, supply, agreement** structure
+    * **Configurable matcher rules** 
+    * **Simulation functionality** for matcher
+* Improved **extensibility**:
+    * Introduced the **tradable entity** abstraction layer
+    * Support for **bundles**
+    * Possibility to link **arbitrary offchain data** to onchain entities in a verifiable way
+* Tradable entity **standard** compliance:
+    * **ERC721**
+    * **ERC165**
+* Improved **developer experience**:
+    * Facade libraries fetch, verify and provide on- and offchain data in a **single method call**
+    * **Truffle compatibility**
+    * **Config file validation** with JSON schema
+    * Updated all contracts to **Solidity v0.5.0** or higher
+    * **Test backend** for offchain storage
+* **Modular structure**:
+    * User Registry
+    * Asset Registry 
+    * Origin Issuer
+    * Origin Market
 
-* moved many onchain-properties to be stored offchain 
-* created simple backend for testing origin
-* updated all contracts to Solidity > 0.5.0
-* smart contracts are backwards compatible to truffle 
+
+## Repositories
+* ew-asset-registry-contracts
+* ew-asset-registry-lib
+* ew-asset-registry-frontend
+* ew-market-contracts
+* ew-market-lib
+* ew-market-matcher
+* ew-origin-contracts
+* ew-origin-lib
+* ew-user-registry-contracts
+* ew-user-lib
+* ew-utils-general-contracts
+* ew-utils-general-lib  
+* ew-utils-general-precise-proofs
+* ew-utils-demo
+* ew-utils-deployment 
+* ew-utils-testbackend
+* ew-utils-testtoken 
 
 ## asset-registry
 * created separate repositories for assets: 
