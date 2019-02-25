@@ -16,7 +16,6 @@ After you clone this repo you have to run the command <code>npm install</code>. 
 
 When the command is finished you have to start a blockchain:
 * ganache / testrpc: to run this testchain simply run the command <code>npm run start-ganache</code>
-* parity: if you're using docker you can run the command <code>npm run parity-docker</code>
 * your own blockchain client connected to any ethereum-like chain (e.g. Tobalaba)
 
 This demo is using raw-transactions, so you don't have to unlock your accounts in the blockchain-client. Because this demo was developed with Tobalaba in mind the current gasPrice is set to 0 thus enabling sending transaction from accounts without any balance.<br>
@@ -28,7 +27,9 @@ We strongly recommend to change the keys included in this repo when running on a
 
 ## Configuration
 
-The configuration and flow of actions is done with the file [demo-config.json](config/demo-config.json) in the config-folder.
+The configuration and flow of actions is done "by default" with the file [demo-config.json](config/demo-config.json) in the config-folder.
+
+*NOTE: you could also pass a customized demo file into the <code>marketDemo()</code> function in the test script(<code>/src/test.ts</code>)*
 
 The following keys are required:
 * topAdminPrivateKey: the private key of the topAdmin
@@ -482,7 +483,7 @@ usage: command to make an agreement - pairing a demand with an appropriate suppl
 * <code>allowedMatcher</code>: address of the matcher allowed to pair the demand and supply
 
 #### example
-We want to make an agreement between the demand<code>0</code> and supply<code>0</code>. The agreed price between the two parties is set at <code>10 USD</code> with the timeframe of the contract being <code>hourly</code> for a period of <code>10</code>(hours). The current time and watt-hour readings are stored as <code>0</code> marking the genesis of the agreement. The trader with the address <code>0x4095f1db44884764C17c7A9A31B4Bf20f5779691</code> is creating the agreement. Although the supplier must approve the agreement to actually confirm it.
+We want to make an agreement between the demand<code>0</code> and supply<code>0</code>. The agreed price between the two parties is set at <code>10 USD</code> with the timeframe of the contract being <code>hourly</code> for a period of <code>10</code>(hours). The current period and watt-hour readings are stored as <code>0</code> marking the genesis of the agreement. The trader with the address <code>0x4095f1db44884764C17c7A9A31B4Bf20f5779691</code> is creating the agreement. Although the supplier must approve the agreement to actually confirm it.
 
 <code>
 {
@@ -504,6 +505,16 @@ We want to make an agreement between the demand<code>0</code> and supply<code>0<
     }
 }
 </code>
+
+##### Sidenote:
+If you set the <code>startTime</code> as <code>-1</code> it would be automatically set to the latest block timestamp. Accordingly, <code>endTime</code> would be set as <code>startTime</code> + <code>endTime</code>.
+
+<code>
+    "startTime": -1,
+    "endTime": 3600,
+</code>
+
+for the above code block <code>startTime</code> would be the latest block timestamp and <code>endTime</code> would be latest block timestamp + 3600 seconds (one hour).
 
 ### APPROVE_AGREEMENT
 usage: command to approve an agreement
@@ -538,4 +549,4 @@ We want to pause the flow for <code>2</code> secondss
 <code>{"type": "SLEEP", "data": 2000}</code>
 
 ## starting the demo
-Once all the actions are set within the config-file simply run <code>npm run start-demo</code>. It will freshly deploy all contracts and setup everything for you. After this is done, it will automatically run all the flow-actions. <br>
+Once all the actions are set within the config-file simply run <code>npm start</code>. It will freshly deploy all contracts and setup everything for you. After this is done, it will automatically run all the flow-actions. <br>

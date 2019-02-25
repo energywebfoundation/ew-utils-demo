@@ -11,7 +11,7 @@ build-pkg:
     - short-jobs
   script:
     - sh /prepare.sh
-    - npm install 
+    - npm install
     - npm run build-ts
 
   artifacts:
@@ -28,10 +28,10 @@ test-parity:
       alias: parity
   script:
     - sh /prepare.sh
-    - cp ci.connection-config.json connection-config.json 
-    - npm install 
+    - cp ci.connection-config.json connection-config.json
+    - npm install
     - npm run start-test-backend > /dev/null 2>&1 &
-    - npm test 
+    - npm test
 
 test-parity-POA:
   tags:
@@ -42,8 +42,8 @@ test-parity-POA:
       alias: parity
   script:
     - sh /prepare.sh
-    - cp ci.connection-config.json connection-config.json 
-    - npm install 
+    - cp ci.connection-config.json connection-config.json
+    - npm install
     - npm run start-test-backend > /dev/null 2>&1 &
     - npm test
 
@@ -53,7 +53,7 @@ test-ganache:
   stage: test
   script:
     - sh /prepare.sh
-    - npm install 
+    - npm install
     - npm run start-test-backend > /dev/null 2>&1 &
     - npm run start-ganache > /dev/null 2>&1 &
     - npm test
@@ -72,3 +72,26 @@ push-to-registry:
     - sh /prepare.sh
     - npm --no-git-tag-version -f version $CI_COMMIT_TAG
     - npm publish
+  
+push-to-github:
+  stage: deploy
+  variables:
+    GITHUB_REPO_NAME: ew-utils-demo
+    GIT_STRATEGY: clone
+  only:
+    - '/^v\d+\.\d+\.\d+\-release$/'
+  tags:
+    - short-jobs
+  script:
+    - CLEAN_VERSION=`echo "$CI_COMMIT_TAG"|sed s/-release//`
+    - echo "using $CLEAN_VERSION as version"
+    - echo -e "$CI_SSH_KEY" > /gitkey
+    - chmod 0400 /gitkey
+    - export GIT_SSH_COMMAND="/usr/bin/ssh -o StrictHostKeyChecking=no -i /gitkey"
+    - git remote add external git@github.com:energywebfoundation/${GITHUB_REPO_NAME}.git
+    - git push --force external HEAD:refs/heads/master
+    - git tag | grep -v '\-release' | xargs git tag --delete 
+    - git tag $CLEAN_VERSION
+    - git push --force external --tag $CLEAN_VERSION
+    - rm /gitkey
+

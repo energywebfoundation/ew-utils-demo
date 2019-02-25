@@ -1,7 +1,21 @@
+// Copyright 2018 Energy Web Foundation
+// This file is part of the Origin Application brought to you by the Energy Web Foundation,
+// a global non-profit organization focused on accelerating blockchain technology across the energy sector,
+// incorporated in Zug, Switzerland.
+//
+// The Origin Application is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// This is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY and without an implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details, at <http://www.gnu.org/licenses/>.
+//
+// @authors: slock.it GmbH; Heiko Burkhardt, heiko.burkhardt@slock.it; Martin Kuechler, martin.kuchler@slock.it; Chirag Parmar, chirag.parmar@slock.it
+
 import * as fs from 'fs';
-import Web3 = require('web3');
 import { onboardDemo } from './onboarding'
-import { logger } from './Logger';
 
 import * as Certificate from 'ew-origin-lib';
 import * as User from 'ew-user-registry-lib'
@@ -40,9 +54,9 @@ export const certificateDemo = async(actionString: string, conf: GeneralLib.Conf
         let asset = await (new Asset.ProducingAsset.Entity(action.data.assetId, conf).sync());
         await asset.saveSmartMeterRead(action.data.meterreading, action.data.filehash);
         asset = await asset.sync();
-        console.log("Producing smart meter reading saved")
+        conf.logger.verbose("Producing smart meter reading saved")
       } catch(e) {
-        console.log("Error saving smart meter read for producing asset\n" + e)
+        conf.logger.error("Could not save smart meter reading for producing asset\n" + e)
       }
 
       console.log("-----------------------------------------------------------\n")
@@ -59,9 +73,9 @@ export const certificateDemo = async(actionString: string, conf: GeneralLib.Conf
         let asset = await (new Asset.ConsumingAsset.Entity(action.data.assetId, conf).sync());
         await asset.saveSmartMeterRead(action.data.meterreading, action.data.filehash);
         asset = await asset.sync();
-        console.log("Consuming meter reading saved")
+        conf.logger.verbose("Consuming meter reading saved")
       } catch(e) {
-        console.log("Error saving smart meter read for consuming asset\n" + e)
+        conf.logger.error("Could not save smart meter reading for consuming asset\n" + e)
       }
 
       console.log("-----------------------------------------------------------\n")
@@ -75,13 +89,13 @@ export const certificateDemo = async(actionString: string, conf: GeneralLib.Conf
         address: adminAccount.address, privateKey: adminPK,
       };
 
-      const contractConfig = JSON.parse(fs.readFileSync(process.cwd() + '/config/contractConfig.json', 'utf8').toString());
+      const contractConfig = JSON.parse(fs.readFileSync('./config/contractConfig.json', 'utf8').toString());
 
       try {
         await conf.blockchainProperties.producingAssetLogicInstance.setMarketLookupContract(action.data.assetId, contractConfig.originContractLookup, { privateKey: action.data.assetOwnerPK });
-        console.log("Certificates for Asset #" + action.data.assetId + " initialized")
+        conf.logger.info("Certificates for Asset #" + action.data.assetId + " initialized")
       } catch(e) {
-        console.log("Error intializing certificates\n" + e)
+        conf.logger.error("Could not intialize certificates\n" + e)
       }
       console.log("-----------------------------------------------------------")
       break
@@ -94,15 +108,15 @@ export const certificateDemo = async(actionString: string, conf: GeneralLib.Conf
       };
 
       try {
-        console.log("Asset Owner Balance(BEFORE):",(await Certificate.TradableEntity.getBalance(action.data.assetOwner, conf)))
-        console.log("Asset Owner Balance(BEFORE):",(await Certificate.TradableEntity.getBalance(action.data.addressTo, conf)))
+        conf.logger.verbose("Asset Owner Balance(BEFORE): " + (await Certificate.TradableEntity.getBalance(action.data.assetOwner, conf)))
+        conf.logger.verbose("Asset Owner Balance(BEFORE): " + (await Certificate.TradableEntity.getBalance(action.data.addressTo, conf)))
         const certificate = await (new Certificate.Certificate.Entity(action.data.certId, conf).sync());
         await certificate.transferFrom(action.data.addressTo);
-        console.log("Certificate Transferred")
-        console.log("Asset Owner Balance(AFTER):",(await Certificate.TradableEntity.getBalance(action.data.assetOwner, conf)))
-        console.log("Asset Owner Balance(AFTER):",(await Certificate.TradableEntity.getBalance(action.data.addressTo, conf)))
+        conf.logger.info("Certificate Transferred")
+        conf.logger.verbose("Asset Owner Balance(AFTER): " + (await Certificate.TradableEntity.getBalance(action.data.assetOwner, conf)))
+        conf.logger.verbose("Asset Owner Balance(AFTER): " + (await Certificate.TradableEntity.getBalance(action.data.addressTo, conf)))
       } catch(e) {
-        console.log("Error transferring certificates\n" + e)
+        conf.logger.error("Could not transfer certificates\n" + e)
       }
 
 
@@ -121,15 +135,15 @@ export const certificateDemo = async(actionString: string, conf: GeneralLib.Conf
         await certificate.splitCertificate(action.data.splitValue);
         certificate = await certificate.sync()
 
-        console.log("Certificate Split into:", certificate.children)
+        conf.logger.info("Certificate Split into:", certificate.children)
 
         for(const cId of certificate.children) {
           const c = await(new Certificate.Certificate.Entity(cId.toString(), conf).sync());
-          console.log("Child Certificate #" + cId + " - PowerInW: " + c.powerInW)
+          conf.logger.info("Child Certificate #" + cId + " - PowerInW: " + c.powerInW)
         }
 
       } catch(e) {
-        console.log("Error transferring certificates\n" + e)
+        conf.logger.error("Could not split certificates\n" + e)
       }
 
 
@@ -157,7 +171,7 @@ export const certificateDemo = async(actionString: string, conf: GeneralLib.Conf
         let erc20TestToken = new Erc20TestToken(conf.blockchainProperties.web3, erc20TestAddress);
         await certificate.setTradableToken(erc20TestAddress);
         certificate = await certificate.sync();
-        console.log("Demo ERC token created: " + erc20TestAddress)
+        conf.logger.info("Demo ERC token created: " + erc20TestAddress)
 
         //save in global storage
         let erc20Config = {} as any
@@ -167,7 +181,7 @@ export const certificateDemo = async(actionString: string, conf: GeneralLib.Conf
         await writeJsonFile('./config/erc20Config.json', erc20Config)
 
       } catch(e) {
-        console.log("Error setting ERC20 for certificate trading\n", e)
+        conf.logger.error("Could not set ERC20 tokens for certificate trading\n", e)
       }
 
       console.log("-----------------------------------------------------------\n")
@@ -180,21 +194,21 @@ export const certificateDemo = async(actionString: string, conf: GeneralLib.Conf
         address: action.data.buyer , privateKey: action.data.buyerPK,
       };
 
-      const erc20Config = JSON.parse(fs.readFileSync(process.cwd() + '/config/erc20Config.json', 'utf8').toString());
+      const erc20Config = JSON.parse(fs.readFileSync('./config/erc20Config.json', 'utf8').toString());
 
       let erc20TestToken = new Erc20TestToken(conf.blockchainProperties.web3, erc20Config.ERC20Address)
       await erc20TestToken.approve(action.data.assetOwner, action.data.price, {privateKey: action.data.buyerPK})
-      console.log("Allowance: " + await erc20TestToken.allowance(action.data.buyer, action.data.assetOwner))
+      conf.logger.verbose("Allowance: " + await erc20TestToken.allowance(action.data.buyer, action.data.assetOwner))
 
 
       try {
-        console.log("Buyer Balance(BEFORE):",(await Certificate.TradableEntity.getBalance(action.data.buyer, conf)))
+        conf.logger.verbose("Buyer Balance(BEFORE): " + (await Certificate.TradableEntity.getBalance(action.data.buyer, conf)))
         const certificate = await (new Certificate.Certificate.Entity(action.data.certId, conf).sync());
         await certificate.buyCertificate();
-        console.log("Certificate Bought")
-        console.log("Buyer Balance(AFTER):",(await Certificate.TradableEntity.getBalance(action.data.buyer, conf)))
+        conf.logger.info("Certificate Bought")
+        conf.logger.verbose("Buyer Balance(AFTER): " + (await Certificate.TradableEntity.getBalance(action.data.buyer, conf)))
       } catch(e) {
-        console.log("Error buying Certificates\n" + e)
+        conf.logger.error("Could not buy Certificates\n" + e)
       }
 
       console.log("-----------------------------------------------------------\n")

@@ -1,6 +1,18 @@
-import * as fs from 'fs';
-import Web3 = require('web3');
-import { logger } from './Logger';
+// Copyright 2018 Energy Web Foundation
+// This file is part of the Origin Application brought to you by the Energy Web Foundation,
+// a global non-profit organization focused on accelerating blockchain technology across the energy sector,
+// incorporated in Zug, Switzerland.
+//
+// The Origin Application is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// This is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY and without an implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details, at <http://www.gnu.org/licenses/>.
+//
+// @authors: slock.it GmbH; Heiko Burkhardt, heiko.burkhardt@slock.it; Martin Kuechler, martin.kuchler@slock.it; Chirag Parmar, chirag.parmar@slock.it
 
 import * as User from 'ew-user-registry-lib'
 import * as Asset from 'ew-asset-registry-lib'
@@ -31,8 +43,8 @@ export const onboardDemo = async(actionString: string, conf: GeneralLib.Configur
       await conf.blockchainProperties.userLogicInstance.setUser(action.data.address, action.data.organization, { privateKey: adminPK })
       await conf.blockchainProperties.userLogicInstance.setRoles(action.data.address, action.data.rights, { privateKey: adminPK } )
 
-      console.log("Onboarded a new user:", action.data.address)
-      console.log("User Properties:", action.data.organization, action.data.rights)
+      conf.logger.info("Onboarded a new user: " + action.data.address)
+      conf.logger.verbose("User Properties: " + action.data.organization + ", " + action.data.rights)
 
       break
 
@@ -42,7 +54,6 @@ export const onboardDemo = async(actionString: string, conf: GeneralLib.Configur
 
 
       const assetProducingProps: Asset.ProducingAsset.OnChainProperties = {
-          certificatesUsedForWh: action.data.certificatesCreatedForWh,
           smartMeter: { address: action.data.smartMeter },
           owner: { address: action.data.owner },
           lastSmartMeterReadWh: action.data.lastSmartMeterReadWh,
@@ -51,8 +62,6 @@ export const onboardDemo = async(actionString: string, conf: GeneralLib.Configur
           matcher: [{address: action.data.matcher}],
           propertiesDocumentHash: null,
           url: null,
-          certificatesCreatedForWh: action.data.certificatesCreatedForWh,
-          lastSmartMeterCO2OffsetRead: action.data.lastSmartMeterCO2OffsetRead,
           maxOwnerChanges: action.data.maxOwnerChanges,
       };
 
@@ -101,9 +110,8 @@ export const onboardDemo = async(actionString: string, conf: GeneralLib.Configur
 
       try {
         const asset = await Asset.ProducingAsset.createAsset(assetProducingProps, assetProducingPropsOffChain, conf);
-        console.log("Producing Asset Created: ", asset.id)
       } catch(e) {
-        console.log("ERROR: " + e)
+        conf.logger.error("ERROR: " + e)
       }
 
       console.log("-----------------------------------------------------------\n")
@@ -140,9 +148,8 @@ export const onboardDemo = async(actionString: string, conf: GeneralLib.Configur
 
       try {
         const asset = await Asset.ConsumingAsset.createAsset(assetConsumingProps, assetConsumingPropsOffChain, conf);
-        console.log("Consuming Asset Created:", asset.id)
       } catch(e) {
-        console.log(e)
+        conf.logger.error(e)
       }
 
       console.log("-----------------------------------------------------------\n")
@@ -154,6 +161,6 @@ export const onboardDemo = async(actionString: string, conf: GeneralLib.Configur
       break
 
     default:
-      console.log("Unidentified Command: " + action.type)
+      conf.logger.warn("Unidentified Command: " + action.type)
   }
 }
