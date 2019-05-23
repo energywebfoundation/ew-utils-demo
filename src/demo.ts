@@ -44,6 +44,7 @@ import {
     deployERC721TestReceiver
 } from 'ew-erc-test-contracts';
 import { MarketContractLookup, MarketLogic } from 'ew-market-contracts';
+import { CONFIG } from './config';
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -116,7 +117,7 @@ export const marketDemo = async (demoFile?: string) => {
             web3
         },
         offChainDataSource: {
-            baseUrl: 'http://localhost:3030'
+            baseUrl: CONFIG.API_BASE_URL
         },
         logger
     };

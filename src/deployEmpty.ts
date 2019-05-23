@@ -37,17 +37,17 @@ export const deployEmptyContracts = async () => {
 
     // deploy user, asset and market contracts and store instances of lookup contracts
     const userContracts = await migrateUserRegistryContracts(web3, adminPK);
-    const userContractLookup = userContracts.UserContractLookup;
-    const userLogic = userContracts.UserLogic;
+    const userContractLookup = (userContracts as any).UserContractLookup;
+    const userLogic = (userContracts as any).UserLogic;
     logger.info('User Contract Deployed: ' + userContractLookup);
 
-    const assetContracts = await migrateAssetRegistryContracts(web3, userContractLookup, adminPK);
+    const assetContracts : any = await migrateAssetRegistryContracts(web3, userContractLookup, adminPK);
     const assetContractLookup = assetContracts.AssetContractLookup;
     const assetProducingRegistryLogic = assetContracts.AssetProducingRegistryLogic;
     const assetConsumingRegistryLogic = assetContracts.AssetConsumingRegistryLogic;
     logger.info('Asset Contract Deployed: ' + assetContractLookup);
 
-    const originContracts = await migrateCertificateRegistryContracts(
+    const originContracts : any = await migrateCertificateRegistryContracts(
         web3,
         assetContractLookup,
         adminPK
@@ -56,7 +56,7 @@ export const deployEmptyContracts = async () => {
     const certificateLogic = originContracts.CertificateLogic;
     logger.info('Origin Contract Deployed: ' + originContractLookup);
 
-    const marketContracts = await migrateMarketRegistryContracts(
+    const marketContracts : any = await migrateMarketRegistryContracts(
         web3,
         assetContractLookup,
         adminPK

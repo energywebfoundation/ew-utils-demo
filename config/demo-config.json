@@ -414,6 +414,16 @@
                 "smartMeterPK": "0xa05ddf7fe8302d117b516c0e401468a30c39a3e467ad3720381cf89500f0854b",
                 "filehash": "newMeterRead"
             }
+        },
+        {
+            "type": "SET_ERC20_CERTIFICATE",
+            "data": {
+                "certId": 1,
+                "assetOwner": "0x71c31ff1faa17b1cb5189fd845e0cca650d215d3",
+                "assetOwnerPK": "0xbfb423a193614c6712efd02951289192c20d70b3fc8a8b7cdee73603fcead486",
+                "price": 1000,
+                "testAccount": "0xcea1c413a570654fa85e78f7c17b755563fec5a5"
+            }
         }
     ]
 }

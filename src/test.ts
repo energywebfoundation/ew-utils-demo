@@ -1,6 +1,7 @@
 import { marketDemo } from './market';
 import { deployEmptyContracts } from './deployEmpty';
-import * as fs from 'fs';
+import * as fetch from 'node-fetch';
+import { CONFIG } from './config';
 
 async function main() {
     const contractConfig = await deployEmptyContracts();
@@ -8,9 +9,17 @@ async function main() {
     // you could either use the default config file "demo-config.json"
     await marketDemo();
 
-    // or you could also pass a customized demo file to the demo function as depicted below
-    // const demoFile = fs.readFileSync("./config/demo-config-2.json", 'utf8').toString()
-    // await marketDemo(demoFile)
+    if (contractConfig && contractConfig.originContractLookup) {
+       fetch(`${CONFIG.API_BASE_URL}/OriginContractLookupMarketLookupMapping/${contractConfig.originContractLookup.toLowerCase()}`, {
+           body: JSON.stringify({
+               marketContractLookup: contractConfig.marketContractLookup.toLowerCase(),
+           }),
+           method: 'PUT',
+           headers: {
+               'Content-Type': 'application/json',
+           }
+       })
+   }
 }
 
 main();
