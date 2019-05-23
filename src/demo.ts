@@ -17,38 +17,22 @@
 import * as fs from 'fs';
 import Web3 from 'web3';
 import { certificateDemo } from './certificate';
-import { deployEmptyContracts } from './deployEmpty';
 import { logger } from './Logger';
 
-import * as Certificate from 'ew-origin-lib';
-import * as User from 'ew-user-registry-lib';
-import * as Asset from 'ew-asset-registry-lib';
 import * as GeneralLib from 'ew-utils-general-lib';
 import * as Market from 'ew-market-lib';
 
-import { UserContractLookup, UserLogic } from 'ew-user-registry-contracts';
+import { UserLogic, Role, buildRights } from 'ew-user-registry-lib';
+
 import {
-    AssetContractLookup,
     AssetProducingRegistryLogic,
     AssetConsumingRegistryLogic
-} from 'ew-asset-registry-contracts';
+} from 'ew-asset-registry-lib';
 import {
-    OriginContractLookup,
-    CertificateLogic,
-    migrateCertificateRegistryContracts
-} from 'ew-origin-contracts';
-import {
-    deployERC20TestToken,
-    Erc20TestToken,
-    TestReceiver,
-    deployERC721TestReceiver
-} from 'ew-erc-test-contracts';
-import { MarketContractLookup, MarketLogic } from 'ew-market-contracts';
+    CertificateLogic} from 'ew-origin-lib';
+import { MarketLogic } from 'ew-market-lib';
 import { CONFIG } from './config';
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
 
 export const marketDemo = async (demoFile?: string) => {
     const startTime = Date.now();
@@ -91,10 +75,8 @@ export const marketDemo = async (demoFile?: string) => {
 
     // set the admin account as an asset admin
     await userLogic.setUser(adminAccount.address, 'admin', { privateKey: adminPK });
-    await userLogic.setRoles(adminAccount.address, 3, { privateKey: adminPK });
+    await userLogic.setRoles(adminAccount.address, buildRights([Role.UserAdmin, Role.AssetAdmin]), { privateKey: adminPK });
 
-    // initialize a token to handle demo erc20 trading
-    let erc20TestToken: Erc20TestToken;
 
     // initialize variables for storing timeframe and currency
     let timeFrame;

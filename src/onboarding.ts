@@ -14,16 +14,8 @@
 //
 // @authors: slock.it GmbH; Heiko Burkhardt, heiko.burkhardt@slock.it; Martin Kuechler, martin.kuchler@slock.it; Chirag Parmar, chirag.parmar@slock.it
 
-import * as User from 'ew-user-registry-lib';
 import * as Asset from 'ew-asset-registry-lib';
 import * as GeneralLib from 'ew-utils-general-lib';
-
-import { UserContractLookup, UserLogic } from 'ew-user-registry-contracts';
-import {
-    AssetContractLookup,
-    AssetProducingRegistryLogic,
-    AssetConsumingRegistryLogic
-} from 'ew-asset-registry-contracts';
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -126,7 +118,7 @@ export const onboardDemo = async (
             };
 
             try {
-                const asset = await Asset.ProducingAsset.createAsset(
+                await Asset.ProducingAsset.createAsset(
                     assetProducingProps,
                     assetProducingPropsOffChain,
                     conf
@@ -167,7 +159,7 @@ export const onboardDemo = async (
             };
 
             try {
-                const asset = await Asset.ConsumingAsset.createAsset(
+                await Asset.ConsumingAsset.createAsset(
                     assetConsumingProps,
                     assetConsumingPropsOffChain,
                     conf

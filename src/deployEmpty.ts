@@ -17,10 +17,10 @@
 import * as fs from 'fs';
 import Web3 from 'web3';
 import { logger } from './Logger';
-import { migrateUserRegistryContracts } from 'ew-user-registry-contracts';
-import { migrateAssetRegistryContracts } from 'ew-asset-registry-contracts';
-import { migrateCertificateRegistryContracts } from 'ew-origin-contracts';
-import { migrateMarketRegistryContracts } from 'ew-market-contracts';
+import { migrateUserRegistryContracts } from 'ew-user-registry-lib';
+import { migrateAssetRegistryContracts } from 'ew-asset-registry-lib';
+import { migrateCertificateRegistryContracts } from 'ew-origin-lib';
+import { migrateMarketRegistryContracts } from 'ew-market-lib';
 
 export const deployEmptyContracts = async () => {
     const connectionConfig = JSON.parse(

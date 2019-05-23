@@ -23,16 +23,6 @@ import * as Asset from 'ew-asset-registry-lib';
 import * as GeneralLib from 'ew-utils-general-lib';
 
 import {
-    AssetContractLookup,
-    AssetProducingRegistryLogic,
-    AssetConsumingRegistryLogic
-} from 'ew-asset-registry-contracts';
-import {
-    OriginContractLookup,
-    CertificateLogic,
-    migrateCertificateRegistryContracts
-} from 'ew-origin-contracts';
-import {
     deployERC20TestToken,
     Erc20TestToken,
     TestReceiver,
