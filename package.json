@@ -8,7 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "start-test-backend": "node node_modules/ew-utils-testbackend/index.js",
+    "start-test-backend": "node node_modules/ew-utils-testbackend/dist/js/src/index.js",
     "test": "npm run build-ts && node dist/js/test",
     "start-ganache": "ganache-cli -m 'chalk park staff buzz chair purchase wise oak receive avoid avoid home' -g 0 -l 80000000 -e 1000000 -a 20",
     "start": "npm run build-ts && node dist/js/test",
