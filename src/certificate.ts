@@ -82,7 +82,7 @@ export const certificateDemo = async(actionString: string, conf: GeneralLib.Conf
 
       break
 
-    case "INITIALIZE_CERTIFICATES":
+    case "SET_MARKET_CONTRACT":
       console.log("-----------------------------------------------------------")
 
       conf.blockchainProperties.activeUser = {
