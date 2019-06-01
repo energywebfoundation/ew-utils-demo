@@ -19,7 +19,7 @@
     "lint": "./node_modules/.bin/tslint --fix  'src/**/*{.ts,.tsx}'"
   },
   "dependencies": {
-    "ew-erc-test-contracts": "0.0.99",
+    "ew-erc-test-contracts": "0.3.0",
     "ew-asset-registry-lib": "energywebfoundation/ew-asset-registry-lib#feature/add-facility-name",
     "ew-user-registry-lib": "energywebfoundation/ew-user-registry-lib#5a41bd1",
     "ew-utils-general-lib": "energywebfoundation/ew-utils-general-lib#d54e4e2",
