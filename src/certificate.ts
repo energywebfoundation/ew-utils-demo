@@ -226,8 +226,8 @@ export const certificateDemo = async (
             console.log('-----------------------------------------------------------');
 
             conf.blockchainProperties.activeUser = {
-                address: action.data.assetOwner,
-                privateKey: action.data.assetOwnerPK
+                address: action.data.certificateOwner,
+                privateKey: action.data.certificateOwnerPK
             };
 
             try {
