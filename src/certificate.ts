@@ -192,7 +192,7 @@ export const certificateDemo = async (
                     conf
                 ).sync();
 
-                await certificate.setOnChainDirectPurchasePrice(action.data.price);
+                await certificate.setPurchasePrice(action.data.price);
                 certificate = await certificate.sync();
 
                 const erc20TestAddress = (await deployERC20TestToken(
