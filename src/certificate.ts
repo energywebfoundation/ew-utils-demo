@@ -250,6 +250,35 @@ export const certificateDemo = async (
 
             console.log('-----------------------------------------------------------\n');
             break;
+        case 'PUBLISH_CERTIFICATE_FOR_SALE_OFFCHAIN':
+                console.log('-----------------------------------------------------------');
+    
+                conf.blockchainProperties.activeUser = {
+                    address: action.data.certificateOwner,
+                    privateKey: action.data.certificateOwnerPK
+                };
+    
+                const erc20 = JSON.parse(
+                    fs.readFileSync('./config/erc20Config.json', 'utf8').toString()
+                );
+    
+                try {
+                    let certificate = await new Certificate.Certificate.Entity(
+                        action.data.certId,
+                        conf
+                    ).sync();
+    
+                    await certificate.setOffChainSettlementOptions(action.data.price, Currency[action.data.currency]);
+                    await certificate.publishForSale(action.data.price, '0x0000000000000000000000000000000000000000');
+                    certificate = await certificate.sync();
+    
+                    conf.logger.info(`Certificate ${action.data.certId} published for sale`);
+                } catch (e) {
+                    conf.logger.error(`Could not set publish ${action.data.certId} for sale\n`, e);
+                }
+    
+                console.log('-----------------------------------------------------------\n');
+                break;
         case 'BUY_CERTIFICATE':
             console.log('-----------------------------------------------------------');
 
