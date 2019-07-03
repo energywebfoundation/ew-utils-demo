@@ -55,7 +55,7 @@ export const certificateDemo = async (
 
             try {
                 let asset = await new Asset.ProducingAsset.Entity(action.data.assetId, conf).sync();
-                await asset.saveSmartMeterRead(action.data.meterreading, action.data.filehash);
+                await asset.saveSmartMeterRead(action.data.meterreading, action.data.filehash, action.data.timestamp || 0);
                 asset = await asset.sync();
                 conf.logger.verbose('Producing smart meter reading saved');
             } catch (e) {
@@ -75,7 +75,7 @@ export const certificateDemo = async (
 
             try {
                 let asset = await new Asset.ConsumingAsset.Entity(action.data.assetId, conf).sync();
-                await asset.saveSmartMeterRead(action.data.meterreading, action.data.filehash);
+                await asset.saveSmartMeterRead(action.data.meterreading, action.data.filehash, action.data.timestamp || 0);
                 asset = await asset.sync();
                 conf.logger.verbose('Consuming meter reading saved');
             } catch (e) {
