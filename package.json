@@ -19,13 +19,13 @@
     "lint": "./node_modules/.bin/tslint --fix  'src/**/*{.ts,.tsx}'"
   },
   "dependencies": {
-    "ew-asset-registry-lib": "energywebfoundation/ew-asset-registry-lib#2c60ebae4b931fc84734cec437066e4057a45c92",
+    "ew-asset-registry-lib": "1.0.3-alpha.6",
     "ew-erc-test-contracts": "0.3.0",
-    "ew-market-lib": "energywebfoundation/ew-market-lib#4205d655fb45f3f5ba947d27288c8e3dcd4a1e75",
-    "ew-user-registry-lib": "energywebfoundation/ew-user-registry-lib#b9ad72196531d56995e1ad0509f58ca8f9aab053",
+    "ew-market-lib": "1.0.2-alpha.5",
+    "ew-user-registry-lib": "1.0.3-alpha.5",
     "ew-utils-general-lib": "1.0.2-alpha.4",
     "ew-utils-testbackend": "1.0.1-alpha.3",
-    "ew-origin-lib": "energywebfoundation/ew-origin-lib#2e7b4f00902dbf9e52367c4894700e4a12069b41",
+    "ew-origin-lib": "1.0.2-alpha.9",
     "node-fetch": "2.5.0",
     "web3": "1.0.0-beta.37",
     "winston": "3.2.1",
