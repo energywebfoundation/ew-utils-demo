@@ -75,7 +75,11 @@ export const certificateDemo = async (
 
             try {
                 let asset = await new Asset.ProducingAsset.Entity(action.data.assetId, conf).sync();
-                await asset.saveSmartMeterRead(action.data.meterreading, action.data.filehash, action.data.timestamp || 0);
+                await asset.saveSmartMeterRead(action.data.meterreading, action.data.filehash, action.data.timestamp || 0, action.data.supplyId,
+                    action.data.averagePower,
+                    action.data.powerProfileURL,
+                    action.data.powerProfileHash
+                );
                 asset = await asset.sync();
                 conf.logger.verbose('Producing smart meter reading saved');
             } catch (e) {
@@ -122,6 +126,12 @@ export const certificateDemo = async (
                 await conf.blockchainProperties.producingAssetLogicInstance.setMarketLookupContract(
                     action.data.assetId,
                     contractConfig.originContractLookup,
+                    { privateKey: action.data.assetOwnerPK }
+                );
+
+                await conf.blockchainProperties.producingAssetLogicInstance.setRealMarketLookupContract(
+                    action.data.assetId,
+                    contractConfig.marketContractLookup,
                     { privateKey: action.data.assetOwnerPK }
                 );
                 conf.logger.info('Certificates for Asset #' + action.data.assetId + ' initialized');

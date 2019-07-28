@@ -255,23 +255,21 @@ export const marketDemo = async (demoFile?: string) => {
                         break;
                 }
 
-                const supplyOffChainProperties: Market.Supply.ISupplyOffchainProperties = {
-                    price: action.data.price,
-                    currency,
-                    availableWh: action.data.availableWh,
-                    timeframe: timeFrame
-                };
-
                 const supplyProps: Market.Supply.ISupplyOnChainProperties = {
                     url: '',
                     propertiesDocumentHash: '',
-                    assetId: action.data.assetId
+                    assetId: action.data.assetId,
+                    price: action.data.price,
+                    currency,
+                    availableWh: action.data.availableWh,
+                    startTime: action.data.startTime,
+                    endTime: action.data.endTime,
+                    matchedPower: 0
                 };
 
                 try {
                     const supply = await Market.Supply.createSupply(
                         supplyProps,
-                        supplyOffChainProperties,
                         conf
                     );
                     delete supply.proofs;
@@ -285,92 +283,6 @@ export const marketDemo = async (demoFile?: string) => {
 
                 break;
 
-            case 'MAKE_AGREEMENT':
-                console.log('-----------------------------------------------------------');
-
-                conf.blockchainProperties.activeUser = {
-                    address: action.data.creator,
-                    privateKey: action.data.creatorPK
-                };
-
-                switch (action.data.timeframe) {
-                    case 'yearly':
-                        timeFrame = GeneralLib.TimeFrame.yearly;
-                        break;
-                    case 'monthly':
-                        timeFrame = GeneralLib.TimeFrame.monthly;
-                        break;
-                    case 'daily':
-                        timeFrame = GeneralLib.TimeFrame.daily;
-                        break;
-                    case 'hourly':
-                        timeFrame = GeneralLib.TimeFrame.hourly;
-                        break;
-                }
-
-                switch (action.data.currency) {
-                    case 'EUR':
-                        currency = GeneralLib.Currency.EUR;
-                        break;
-                    case 'USD':
-                        currency = GeneralLib.Currency.USD;
-                        break;
-                    case 'SGD':
-                        currency = GeneralLib.Currency.SGD;
-                        break;
-                    case 'THB':
-                        currency = GeneralLib.Currency.THB;
-                        break;
-                }
-
-                const agreementOffchainProps: Market.Agreement.IAgreementOffChainProperties = {
-                    start: action.data.startTime,
-                    end: action.data.endTime,
-                    price: action.data.price,
-                    currency,
-                    period: action.data.period,
-                    timeframe: timeFrame
-                };
-
-                const matcherOffchainProps: Market.Agreement.IMatcherOffChainProperties = {
-                    currentWh: action.data.currentWh,
-                    currentPeriod: action.data.currentPeriod
-                };
-
-                const agreementProps: Market.Agreement.IAgreementOnChainProperties = {
-                    propertiesDocumentHash: null,
-                    url: null,
-                    matcherDBURL: null,
-                    matcherPropertiesDocumentHash: null,
-                    demandId: action.data.demandId,
-                    supplyId: action.data.supplyId,
-                    allowedMatcher: [action.data.allowedMatcher]
-                };
-
-                try {
-                    const agreement = await Market.Agreement.createAgreement(
-                        agreementProps,
-                        agreementOffchainProps,
-                        matcherOffchainProps,
-                        conf
-                    );
-                    delete agreement.proofs;
-                    delete agreement.configuration;
-                    delete agreement.propertiesDocumentHash;
-                    delete agreement.matcherPropertiesDocumentHash;
-                    if (agreement.approvedBySupplyOwner && agreement.approvedByDemandOwner) {
-                        conf.logger.info('Agreement Confirmed');
-                    } else if (!agreement.approvedByDemandOwner) {
-                        conf.logger.info('Demand Owner did not approve yet');
-                    } else if (!agreement.approvedBySupplyOwner) {
-                        conf.logger.info('Supply Owner did not approve yet');
-                    }
-                } catch (e) {
-                    conf.logger.error('Error making an agreement\n' + e);
-                }
-
-                console.log('-----------------------------------------------------------\n');
-                break;
             case 'APPROVE_AGREEMENT':
                 console.log('-----------------------------------------------------------');
 

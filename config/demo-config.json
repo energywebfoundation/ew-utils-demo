@@ -5,59 +5,8 @@
             "type": "CREATE_ACCOUNT",
             "data": {
                 "firstName": "John",
-                "surname": "Doe",
-                "organization": "UserAdmin Organization",
-                "street": "Main Street",
-                "number": "1",
-                "zip": "01234",
-                "city": "Anytown",
-                "country": "USA",
-                "state": "Anystate",
-                "address": "0xd46ac0bc23db5e8afdaab9ad35e9a3ba05e092e8",
-                "privateKey": "0xd9bc30dc17023fbb68fe3002e0ff9107b241544fd6d60863081c55e383f1b5a3",
-                "rights": 1
-            }
-        },
-        {
-            "type": "CREATE_ACCOUNT",
-            "data": {
-                "firstName": "John",
-                "surname": "Doe Two",
-                "organization": "Issuer",
-                "street": "Main Street",
-                "number": "2",
-                "zip": "01234",
-                "city": "Anytown",
-                "country": "USA",
-                "state": "Anystate",
-                "address": "0x9442ed348b161af888e6cb999951ae8b961f7b4b",
-                "privateKey": "0xc4b87d68ea2b91f9d3de3fcb77c299ad962f006ffb8711900cb93d94afec3dc3",
-                "rights": 32
-            }
-        },
-        {
-            "type": "CREATE_ACCOUNT",
-            "data": {
-                "firstName": "John",
-                "surname": "Doe Three",
-                "organization": "AgreementAdmin Organization",
-                "street": "Main Street",
-                "number": "3",
-                "zip": "01234",
-                "city": "Anytown",
-                "country": "USA",
-                "state": "Anystate",
-                "address": "0xb00f0793d0ce69d7b07db16f92dc982cd6bdf651",
-                "privateKey": "0xca77c9b06fde68bcbcc09f603c958620613f4be79f3abb4b2032131d0229462e",
-                "rights": 4
-            }
-        },
-        {
-            "type": "CREATE_ACCOUNT",
-            "data": {
-                "firstName": "John",
                 "surname": "Doe Four",
-                "organization": "AssetManager Organization",
+                "organization": "Sonnen",
                 "street": "Main Street",
                 "number": "4",
                 "zip": "01234",
@@ -73,25 +22,8 @@
             "type": "CREATE_ACCOUNT",
             "data": {
                 "firstName": "John",
-                "surname": "Doe Five",
-                "organization": "AssetManager Second Organization",
-                "street": "Main Street",
-                "number": "5",
-                "zip": "01234",
-                "city": "Anytown",
-                "country": "USA",
-                "state": "Anystate",
-                "address": "0xfd863c662307fcf0c15f0b9f74f1d06544f19908",
-                "privateKey": "0x60a0dae29ff80793b6cc1602f60fbe548b6787d0f9d4eb7c0967dac8ff11591a",
-                "rights": 12
-            }
-        },
-        {
-            "type": "CREATE_ACCOUNT",
-            "data": {
-                "firstName": "John",
                 "surname": "Doe Six",
-                "organization": "Trader Organization",
+                "organization": "E.DIS Netz",
                 "street": "Main Street",
                 "number": "6",
                 "zip": "01234",
@@ -104,23 +36,6 @@
             }
         },
         {
-            "type": "CREATE_ACCOUNT",
-            "data": {
-                "firstName": "John",
-                "surname": "Doe Seven",
-                "organization": "Matcher Organization",
-                "street": "Main Street",
-                "number": "7",
-                "zip": "01234",
-                "city": "Anytown",
-                "country": "USA",
-                "state": "Anystate",
-                "address": "0x2bda153cd94a10cc6584115eada312b27d4166d3",
-                "privateKey": "0x05369a7c890005a9babfb52645d0347bbb456ae562bbac5aad27118e2e9e3a6c",
-                "rights": 63
-            }
-        },
-        {
             "type": "CREATE_PRODUCING_ASSET",
             "data": {
                 "smartMeter": "0x6cc53915dbec95a66deb7c709c800cac40ee55f9",
@@ -128,18 +43,18 @@
                 "owner": "0x5b1b89a48c1fb9b6ef7fb77c453f2aaf4b156d45",
                 "matcher": "0x2bda153cd94a10cc6584115eada312b27d4166d3",
                 "operationalSince": 1514764800,
-                "capacityWh": 10000,
+                "capacityWh": 54000,
                 "lastSmartMeterReadWh": 0,
                 "active": true,
                 "lastSmartMeterReadFileHash": "",
-                "country": "USA",
-                "region": "AnyState",
-                "zip": "01234",
-                "city": "Anytown",
-                "street": "Main Street",
-                "houseNumber": "8",
-                "gpsLatitude": "0",
-                "gpsLongitude": "0",
+                "country": "Germany",
+                "region": "Kremmen",
+                "zip": "",
+                "city": "",
+                "street": "",
+                "houseNumber": "",
+                "gpsLatitude": "52.7734108",
+                "gpsLongitude": "12.918861613554114",
                 "assetType": "Wind",
                 "certificatesCreatedForWh": 0,
                 "lastSmartMeterCO2OffsetRead": 0,
@@ -147,7 +62,7 @@
                 "otherGreenAttributes": "N.A.",
                 "typeOfPublicSupport": "N.A",
                 "maxOwnerChanges": 3,
-                "facilityName": "Wuthering Heights Windfarm"
+                "facilityName": "Sonnen Battery I"
             }
         },
         {
@@ -155,84 +70,29 @@
             "data": {
                 "smartMeter": "0x62538bc93b486acd189513164babac3543a2ce16",
                 "smartMeterPK": "094eaa66c712a1a308b2bd1189cc200613d856b399d502c1e68f25649970a5b0",
-                "owner": "0xfd863c662307fcf0c15f0b9f74f1d06544f19908",
+                "owner": "0x5b1b89a48c1fb9b6ef7fb77c453f2aaf4b156d45",
                 "matcher": "0x2bda153cd94a10cc6584115eada312b27d4166d3",
                 "operationalSince": 1483228800,
-                "capacityWh": 10,
+                "capacityWh": 54000,
                 "lastSmartMeterReadWh": 0,
                 "active": true,
                 "lastSmartMeterReadFileHash": "",
-                "country": "USA",
-                "region": "AnyState",
-                "zip": "01234",
-                "city": "Anytown",
-                "street": "Main Street",
-                "houseNumber": "9",
-                "gpsLatitude": "0",
-                "gpsLongitude": "0",
-                "assetType": "Solar",
+                "country": "Germany",
+                "region": "Kremmen",
+                "zip": "",
+                "city": "",
+                "street": "",
+                "houseNumber": "",
+                "gpsLatitude": "52.7734108",
+                "gpsLongitude": "12.918861613554114",
+                "assetType": "Wind",
                 "certificatesCreatedForWh": 0,
                 "lastSmartMeterCO2OffsetRead": 0,
-                "complianceRegistry": "IREC",
+                "complianceRegistry": "none",
                 "otherGreenAttributes": "N.A.",
                 "typeOfPublicSupport": "N.A",
                 "maxOwnerChanges": 3,
-                "facilityName": "Solar Facility A"
-            }
-        },
-        {
-            "type": "CREATE_PRODUCING_ASSET",
-            "data": {
-                "smartMeter": "0x3409c66069b3c4933c654beeaa136cc5ce6d7bd0",
-                "smartMeterPK": "554f3c1470e9f66ed2cf1dc260d2f4de77a816af2883679b1dc68c551e8fa5ed",
-                "owner": "0x5b1b89a48c1fb9b6ef7fb77c453f2aaf4b156d45",
-                "matcher": "0x2bda153cd94a10cc6584115eada312b27d4166d3",
-                "operationalSince": 1514764800,
-                "capacityWh": 10000,
-                "lastSmartMeterReadWh": 0,
-                "active": true,
-                "lastSmartMeterReadFileHash": "",
-                "country": "USA",
-                "region": "AnyState",
-                "zip": "01234",
-                "city": "Anytown",
-                "street": "Main Street",
-                "houseNumber": "10",
-                "gpsLatitude": "0",
-                "gpsLongitude": "0",
-                "assetType": "BiomassGas",
-                "certificatesCreatedForWh": 0,
-                "lastSmartMeterCO2OffsetRead": 0,
-                "complianceRegistry": "TIGR",
-                "otherGreenAttributes": "N.A.",
-                "typeOfPublicSupport": "N.A",
-                "maxOwnerChanges": 3,
-                "facilityName": "Biomass Facility"
-            }
-        },
-        {
-            "type": "CREATE_CONSUMING_ASSET",
-            "data": {
-                "smartMeter": "0xf7f7c9186fa724c8392a55b9d83d0f3701c16176",
-                "smartMeterPK": "7da67da863672d4cc2984e93ce28d98b0d782d8caa43cd1c977b919c0209541b",
-                "owner": "0x5b1b89a48c1fb9b6ef7fb77c453f2aaf4b156d45",
-                "matcher": "0x2bda153cd94a10cc6584115eada312b27d4166d3",
-                "operationalSince": 1529971200,
-                "capacityWh": 5000,
-                "lastSmartMeterReadWh": 0,
-                "active": true,
-                "lastSmartMeterReadFileHash": "",
-                "country": "USA",
-                "region": "AnyState",
-                "zip": "01234",
-                "city": "Anytown",
-                "street": "Main Street",
-                "houseNumber": "11",
-                "gpsLatitude": "0",
-                "gpsLongitude": "0",
-                "maxCapacitySet": true,
-                "certificatesUsedForWh": 0,
-                "facilityName": "Phone Factory"
+                "facilityName": "Sonnen Battery II"
             }
         },
         {
@@ -251,16 +111,22 @@
             "type": "SET_MARKET_CONTRACT",
             "data": {
                 "assetId": 1,
-                "assetOwner": "0xfd863c662307fcf0c15f0b9f74f1d06544f19908",
-                "assetOwnerPK": "0x60a0dae29ff80793b6cc1602f60fbe548b6787d0f9d4eb7c0967dac8ff11591a"
+                "assetOwner": "0x5b1b89a48c1fb9b6ef7fb77c453f2aaf4b156d45",
+                "assetOwnerPK": "0x622d56ab7f0e75ac133722cc065260a2792bf30ea3265415fe04f3a2dba7e1ac"
             }
         },
         {
-            "type": "SET_MARKET_CONTRACT",
+            "type": "CREATE_SUPPLY",
             "data": {
-                "assetId": 2,
+                "assetId": 0,
                 "assetOwner": "0x5b1b89a48c1fb9b6ef7fb77c453f2aaf4b156d45",
-                "assetOwnerPK": "0x622d56ab7f0e75ac133722cc065260a2792bf30ea3265415fe04f3a2dba7e1ac"
+                "assetOwnerPK": "0x622d56ab7f0e75ac133722cc065260a2792bf30ea3265415fe04f3a2dba7e1ac",
+                "price": 10,
+                "currency": "EUR",
+                "availableWh": 20,
+                "timeframe": "hourly",
+                "startTime": "1564151733000",
+                "endTime": "1564161733000"
             }
         },
         {
@@ -271,48 +137,11 @@
                 "smartMeter": "0x6cc53915dbec95a66deb7c709c800cac40ee55f9",
                 "smartMeterPK": "0x191c4b074672d9eda0ce576cfac79e44e320ffef5e3aadd55e000de57341d36c",
                 "filehash": "newMeterRead",
-                "timestamp": "1560988800"
-            }
-        },
-        {
-            "type": "SAVE_SMARTMETER_READ_PRODUCING",
-            "data": {
-                "assetId": 0,
-                "meterreading": 15,
-                "smartMeter": "0x191c4b074672d9eda0ce576cfac79e44e320ffef5e3aadd55e000de57341d36c",
-                "smartMeterPK": "0x191c4b074672d9eda0ce576cfac79e44e320ffef5e3aadd55e000de57341d36c",
-                "filehash": "newMeterRead",
-                "timestamp": "1560989800"
-            }
-        },
-        {
-            "type": "SAVE_SMARTMETER_READ_PRODUCING",
-            "data": {
-                "assetId": 0,
-                "meterreading": 20,
-                "smartMeter": "0x191c4b074672d9eda0ce576cfac79e44e320ffef5e3aadd55e000de57341d36c",
-                "smartMeterPK": "0x191c4b074672d9eda0ce576cfac79e44e320ffef5e3aadd55e000de57341d36c",
-                "filehash": "newMeterRead"
-            }
-        },
-        {
-            "type": "SAVE_SMARTMETER_READ_PRODUCING",
-            "data": {
-                "assetId": 0,
-                "meterreading": 215,
-                "smartMeter": "0x191c4b074672d9eda0ce576cfac79e44e320ffef5e3aadd55e000de57341d36c",
-                "smartMeterPK": "0x191c4b074672d9eda0ce576cfac79e44e320ffef5e3aadd55e000de57341d36c",
-                "filehash": "newMeterRead"
-            }
-        },
-        {
-            "type": "SAVE_SMARTMETER_READ_CONSUMING",
-            "data": {
-                "assetId": 0,
-                "meterreading": 10,
-                "smartMeter": "0xf7f7c9186fa724c8392a55b9d83d0f3701c16176",
-                "smartMeterPK": "0x7da67da863672d4cc2984e93ce28d98b0d782d8caa43cd1c977b919c0209541b",
-                "filehash": "newMeterRead"
+                "timestamp": "1560988800",
+                "supplyId": 0,
+                "averagePower": 77,
+                "powerProfileURL": "Power profile URL",
+                "powerProfileHash": "Power profile hash"
             }
         }
     ]
