@@ -204,20 +204,9 @@ export const certificateDemo = async (
                 await certificate.setOnChainDirectPurchasePrice(action.data.price);
                 certificate = await certificate.sync();
 
-                const erc20TestToken = new Erc20TestToken(
-                    conf.blockchainProperties.web3,
-                    erc20TestAddress
-                );
                 await certificate.setTradableToken(erc20TestAddress);
                 certificate = await certificate.sync();
                 conf.logger.info('Demo ERC token created: ' + erc20TestAddress);
-
-                // save in global storage
-                const erc20Config = {} as any;
-                erc20Config.ERC20Address = erc20TestAddress;
-
-                const writeJsonFile = require('write-json-file');
-                await writeJsonFile('./config/erc20Config.json', erc20Config);
             } catch (e) {
                 conf.logger.error('Could not set ERC20 tokens for certificate trading\n', e);
             }
@@ -233,17 +222,13 @@ export const certificateDemo = async (
                 privateKey: action.data.certificateOwnerPK
             };
 
-            const erc20 = JSON.parse(
-                fs.readFileSync('./config/erc20Config.json', 'utf8').toString()
-            );
-
             try {
                 let certificate = await new Certificate.Entity(
                     action.data.certId,
                     conf
                 ).sync();
 
-                await certificate.publishForSale(action.data.price, erc20.ERC20Address);
+                await certificate.publishForSale(action.data.price, erc20TestAddress);
                 certificate = await certificate.sync();
 
                 conf.logger.info(`Certificate ${action.data.certId} published for sale`);
@@ -266,28 +251,7 @@ export const certificateDemo = async (
                     conf
                 ).sync();
 
-                let currency;
-
-                switch (action.data.currency) {
-                    case 'EUR':
-                        currency = Currency.EUR;
-                        break;
-                    case 'USD':
-                        currency = Currency.USD;
-                        break;
-                    case 'SGD':
-                        currency = Currency.SGD;
-                        break;
-                    case 'THB':
-                        currency = Currency.THB;
-                        break;
-                }
-
-                await certificate.setOffChainSettlementOptions({
-                    price: action.data.price,
-                    currency
-                });
-                await certificate.publishForSale(action.data.price, '0x0000000000000000000000000000000000000000');
+                await certificate.publishForSale(action.data.price, Currency[action.data.currency]);
                 certificate = await certificate.sync();
 
                 conf.logger.info(`Certificate ${action.data.certId} published for sale`);
@@ -298,22 +262,22 @@ export const certificateDemo = async (
             console.log('-----------------------------------------------------------\n');
             break;
         case 'REQUEST_CERTIFICATES':
-                console.log('-----------------------------------------------------------');
+            console.log('-----------------------------------------------------------');
 
-                const assetId = Number(action.data.assetId);
-    
-                try {
-                    await certificateLogic.requestCertificates(assetId, action.data.lastRequestedSMRead, {
-                        privateKey: action.data.assetOwnerPK
-                    });
-    
-                    conf.logger.info(`Requested certificates for asset ${assetId} up to SM read ${action.data.lastRequestedSMRead}`);
-                } catch (e) {
-                    conf.logger.error(`Could not request certificates for asset ${assetId} up to SM read ${action.data.lastRequestedSMRead}\n`, e);
-                }
-    
-                console.log('-----------------------------------------------------------\n');
-                break;
+            const assetId = Number(action.data.assetId);
+
+            try {
+                await certificateLogic.requestCertificates(assetId, action.data.lastRequestedSMRead, {
+                    privateKey: action.data.assetOwnerPK
+                });
+
+                conf.logger.info(`Requested certificates for asset ${assetId} up to SM read ${action.data.lastRequestedSMRead}`);
+            } catch (e) {
+                conf.logger.error(`Could not request certificates for asset ${assetId} up to SM read ${action.data.lastRequestedSMRead}\n`, e);
+            }
+
+            console.log('-----------------------------------------------------------\n');
+            break;
         case 'UNPUBLISH_CERTIFICATE_FROM_SALE':
             console.log('-----------------------------------------------------------');
 
@@ -345,14 +309,9 @@ export const certificateDemo = async (
                 address: action.data.buyer,
                 privateKey: action.data.buyerPK
             };
-
-            const erc20conf = JSON.parse(
-                fs.readFileSync('./config/erc20Config.json', 'utf8').toString()
-            );
-
             const erc20TestToken = new Erc20TestToken(
                 conf.blockchainProperties.web3,
-                erc20conf.ERC20Address
+                erc20TestAddress
             );
             await erc20TestToken.approve(action.data.assetOwner, action.data.price, {
                 privateKey: action.data.buyerPK
