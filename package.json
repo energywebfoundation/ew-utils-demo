@@ -25,7 +25,7 @@
     "ew-user-registry-lib": "1.0.3-alpha.10",
     "ew-utils-general-lib": "1.0.2-alpha.4",
     "ew-utils-testbackend": "1.0.1-alpha.4",
-    "ew-origin-lib": "1.0.2-alpha.15",
+    "ew-origin-lib": "energywebfoundation/ew-origin-lib#aab0c1ef5b58fd23523bfdafa80275794309be6c",
     "node-fetch": "2.5.0",
     "web3": "1.0.0-beta.37",
     "winston": "3.2.1",
