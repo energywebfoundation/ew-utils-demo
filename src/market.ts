@@ -37,7 +37,7 @@ export const marketDemo = async (demoFile?: string) => {
 
     let demoConfig;
     if (!demoFile) {
-        demoConfig = JSON.parse(fs.readFileSync('./config/examples/bulk-buying-certificates.json', 'utf8').toString());
+        demoConfig = JSON.parse(fs.readFileSync('./config/demo-config.json', 'utf8').toString());
     } else {
         demoConfig = JSON.parse(demoFile);
     }
