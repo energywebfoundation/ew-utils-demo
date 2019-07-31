@@ -358,10 +358,13 @@ export const certificateDemo = async (
                 if (acceptedToken !== '0x0000000000000000000000000000000000000000') {
                     const token = new Erc20TestToken(
                         conf.blockchainProperties.web3,
-                        acceptedToken
+                        erc20TestAddress
                     );
 
-                    await token.approve(cert.owner, cert.onChainDirectPurchasePrice, {
+                    const currentAllowance = Number(await token.allowance(action.data.buyer, cert.owner));
+                    const price = Number(cert.onChainDirectPurchasePrice);
+
+                    await token.approve(cert.owner, currentAllowance + price, {
                         privateKey: action.data.buyerPK
                     });
 
@@ -369,17 +372,18 @@ export const certificateDemo = async (
                         `Buyer Balance ${await token.symbol()} (BEFORE): ` +
                             (await token.balanceOf(action.data.buyer))
                     );
-                    conf.logger.verbose(
-                        'Allowance: ' +
-                            (await token.allowance(action.data.buyer, cert.owner)));
+                    conf.logger.verbose(`Allowance: ${await token.allowance(action.data.buyer, cert.owner)}`);
                 }
             }
 
+
             try {
-                await conf.blockchainProperties.certificateLogicInstance.buyCertificateBulk(action.data.certificateIds);
+                await conf.blockchainProperties.certificateLogicInstance.buyCertificateBulk(action.data.certificateIds, {
+                    privateKey: action.data.buyerPK
+                });
                 conf.logger.info(`Certificates ${action.data.certificateIds.join(', ')} bought on bulk`);
             } catch (e) {
-                conf.logger.error('Could not bulk buy Certificates\n' + e);
+                conf.logger.error(`Could not bulk buy Certificates ${action.data.certificateIds.join(', ')}\n` + e);
             }
 
             console.log('-----------------------------------------------------------\n');
