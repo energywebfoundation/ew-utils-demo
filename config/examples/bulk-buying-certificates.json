@@ -283,14 +283,6 @@
                 "address": "0x7672fa3f8c04abbcbad14d896aad8bedece72d2b",
                 "amount": 500
             }
-        },
-        {
-            "type": "BUY_CERTIFICATE_BULK",
-            "data": {
-                "certificateIds": [0, 1, 2, 3],
-                "buyer": "0x7672fa3f8c04abbcbad14d896aad8bedece72d2b",
-                "buyerPK": "0x50397ee7580b44c966c3975f561efb7b58a54febedaa68a5dc482e52fb696ae7"
-            }
         }
     ]
 }
