@@ -365,7 +365,8 @@ export const certificateDemo = async (
                     const price = Number(cert.onChainDirectPurchasePrice);
 
                     await token.approve(cert.owner, currentAllowance + price, {
-                        privateKey: action.data.buyerPK
+                        from: action.data.buyer,
+                        privateKey: ''
                     });
 
                     conf.logger.verbose(
@@ -376,10 +377,9 @@ export const certificateDemo = async (
                 }
             }
 
-
             try {
                 await conf.blockchainProperties.certificateLogicInstance.buyCertificateBulk(action.data.certificateIds, {
-                    privateKey: action.data.buyerPK
+                    from: action.data.buyer
                 });
                 conf.logger.info(`Certificates ${action.data.certificateIds.join(', ')} bought on bulk`);
             } catch (e) {
