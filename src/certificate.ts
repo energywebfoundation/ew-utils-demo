@@ -343,6 +343,48 @@ export const certificateDemo = async (
             console.log('-----------------------------------------------------------\n');
             break;
 
+        case 'BUY_CERTIFICATE_BULK':
+            console.log('-----------------------------------------------------------');
+
+            conf.blockchainProperties.activeUser = {
+                address: action.data.buyer,
+                privateKey: action.data.buyerPK
+            };
+
+            for (const certId of action.data.certificateIds) {
+                const cert = await new Certificate.Entity(certId, conf).sync();
+                const acceptedToken = (cert.acceptedToken as any) as string;
+
+                if (acceptedToken !== '0x0000000000000000000000000000000000000000') {
+                    const token = new Erc20TestToken(
+                        conf.blockchainProperties.web3,
+                        acceptedToken
+                    );
+
+                    await token.approve(cert.owner, cert.onChainDirectPurchasePrice, {
+                        privateKey: action.data.buyerPK
+                    });
+
+                    conf.logger.verbose(
+                        `Buyer Balance ${await token.symbol()} (BEFORE): ` +
+                            (await token.balanceOf(action.data.buyer))
+                    );
+                    conf.logger.verbose(
+                        'Allowance: ' +
+                            (await token.allowance(action.data.buyer, cert.owner)));
+                }
+            }
+
+            try {
+                await conf.blockchainProperties.certificateLogicInstance.buyCertificateBulk(action.data.certificateIds);
+                conf.logger.info(`Certificates ${action.data.certificateIds.join(', ')} bought on bulk`);
+            } catch (e) {
+                conf.logger.error('Could not bulk buy Certificates\n' + e);
+            }
+
+            console.log('-----------------------------------------------------------\n');
+            break;
+
         default:
             const passString = JSON.stringify(action);
             await onboardDemo(passString, conf, adminPK);
