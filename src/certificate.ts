@@ -126,13 +126,13 @@ export const certificateDemo = async (
                 await conf.blockchainProperties.producingAssetLogicInstance.setMarketLookupContract(
                     action.data.assetId,
                     contractConfig.originContractLookup,
-                    { privateKey: action.data.assetOwnerPK }
+                    { privateKey: adminPK }
                 );
 
                 await conf.blockchainProperties.producingAssetLogicInstance.setRealMarketLookupContract(
                     action.data.assetId,
                     contractConfig.marketContractLookup,
-                    { privateKey: action.data.assetOwnerPK }
+                    { privateKey: adminPK }
                 );
                 conf.logger.info('Certificates for Asset #' + action.data.assetId + ' initialized');
             } catch (e) {

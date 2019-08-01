@@ -13,8 +13,8 @@
                 "city": "Anytown",
                 "country": "USA",
                 "state": "Anystate",
-                "address": "0x5b1b89a48c1fb9b6ef7fb77c453f2aaf4b156d45",
-                "privateKey": "0x622d56ab7f0e75ac133722cc065260a2792bf30ea3265415fe04f3a2dba7e1ac",
+                "address": "0x48E233335976FB09c99C04b6232b3e5619DeeEFd",
+                "privateKey": "",
                 "rights": 12
             }
         },
@@ -36,11 +36,27 @@
             }
         },
         {
+            "type": "CREATE_ACCOUNT",
+            "data": {
+                "firstName": "John",
+                "surname": "Doe Six",
+                "organization": "SM 0",
+                "street": "Main Street",
+                "number": "6",
+                "zip": "01234",
+                "city": "Anytown",
+                "country": "USA",
+                "state": "Anystate",
+                "address": "0xdc055d463cA8216ec0ED02B8bf4AD214DcE51441",
+                "privateKey": "",
+                "rights": 0
+            }
+        },
+        {
             "type": "CREATE_PRODUCING_ASSET",
             "data": {
-                "smartMeter": "0x6cc53915dbec95a66deb7c709c800cac40ee55f9",
-                "smartMeterPK": "191c4b074672d9eda0ce576cfac79e44e320ffef5e3aadd55e000de57341d36c",
-                "owner": "0x5b1b89a48c1fb9b6ef7fb77c453f2aaf4b156d45",
+                "smartMeter": "0xdc055d463cA8216ec0ED02B8bf4AD214DcE51441",
+                "owner": "0x48E233335976FB09c99C04b6232b3e5619DeeEFd",
                 "matcher": "0x2bda153cd94a10cc6584115eada312b27d4166d3",
                 "operationalSince": 1514764800,
                 "capacityWh": 54000,
@@ -62,37 +78,7 @@
                 "otherGreenAttributes": "N.A.",
                 "typeOfPublicSupport": "N.A",
                 "maxOwnerChanges": 3,
-                "facilityName": "Sonnen Battery I"
-            }
-        },
-        {
-            "type": "CREATE_PRODUCING_ASSET",
-            "data": {
-                "smartMeter": "0x62538bc93b486acd189513164babac3543a2ce16",
-                "smartMeterPK": "094eaa66c712a1a308b2bd1189cc200613d856b399d502c1e68f25649970a5b0",
-                "owner": "0x5b1b89a48c1fb9b6ef7fb77c453f2aaf4b156d45",
-                "matcher": "0x2bda153cd94a10cc6584115eada312b27d4166d3",
-                "operationalSince": 1483228800,
-                "capacityWh": 54000,
-                "lastSmartMeterReadWh": 0,
-                "active": true,
-                "lastSmartMeterReadFileHash": "",
-                "country": "Germany",
-                "region": "Kremmen",
-                "zip": "",
-                "city": "",
-                "street": "",
-                "houseNumber": "",
-                "gpsLatitude": "52.7734108",
-                "gpsLongitude": "12.918861613554114",
-                "assetType": "Wind",
-                "certificatesCreatedForWh": 0,
-                "lastSmartMeterCO2OffsetRead": 0,
-                "complianceRegistry": "none",
-                "otherGreenAttributes": "N.A.",
-                "typeOfPublicSupport": "N.A",
-                "maxOwnerChanges": 3,
-                "facilityName": "Sonnen Battery II"
+                "facilityName": "Sonnen Battery"
             }
         },
         {
@@ -102,46 +88,7 @@
         {
             "type": "SET_MARKET_CONTRACT",
             "data": {
-                "assetId": 0,
-                "assetOwner": "0x5b1b89a48c1fb9b6ef7fb77c453f2aaf4b156d45",
-                "assetOwnerPK": "0x622d56ab7f0e75ac133722cc065260a2792bf30ea3265415fe04f3a2dba7e1ac"
-            }
-        },
-        {
-            "type": "SET_MARKET_CONTRACT",
-            "data": {
-                "assetId": 1,
-                "assetOwner": "0x5b1b89a48c1fb9b6ef7fb77c453f2aaf4b156d45",
-                "assetOwnerPK": "0x622d56ab7f0e75ac133722cc065260a2792bf30ea3265415fe04f3a2dba7e1ac"
-            }
-        },
-        {
-            "type": "CREATE_SUPPLY",
-            "data": {
-                "assetId": 0,
-                "assetOwner": "0x5b1b89a48c1fb9b6ef7fb77c453f2aaf4b156d45",
-                "assetOwnerPK": "0x622d56ab7f0e75ac133722cc065260a2792bf30ea3265415fe04f3a2dba7e1ac",
-                "price": 10,
-                "currency": "EUR",
-                "availableWh": 20,
-                "timeframe": "hourly",
-                "startTime": "1564151733000",
-                "endTime": "1564161733000"
-            }
-        },
-        {
-            "type": "SAVE_SMARTMETER_READ_PRODUCING",
-            "data": {
-                "assetId": 0,
-                "meterreading": 10,
-                "smartMeter": "0x6cc53915dbec95a66deb7c709c800cac40ee55f9",
-                "smartMeterPK": "0x191c4b074672d9eda0ce576cfac79e44e320ffef5e3aadd55e000de57341d36c",
-                "filehash": "newMeterRead",
-                "timestamp": "1560988800",
-                "supplyId": 0,
-                "averagePower": 77,
-                "powerProfileURL": "Power profile URL",
-                "powerProfileHash": "Power profile hash"
+                "assetId": 0
             }
         }
     ]
