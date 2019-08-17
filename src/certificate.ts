@@ -134,9 +134,95 @@ export const certificateDemo = async (
                     contractConfig.marketContractLookup,
                     { privateKey: adminPK }
                 );
+
+                await conf.blockchainProperties.certificateLogicInstance.setMarketLogicContract(
+                    contractConfig.marketLogic,
+                    { privateKey: adminPK }
+                );
+
                 conf.logger.info('Certificates for Asset #' + action.data.assetId + ' initialized');
             } catch (e) {
                 conf.logger.error('Could not intialize certificates\n' + e);
+            }
+            console.log('-----------------------------------------------------------');
+            break;
+
+        case 'SET_TOKEN_PROPS':
+            console.log('-----------------------------------------------------------');
+
+            conf.blockchainProperties.activeUser = {
+                address: adminAccount.address,
+                privateKey: adminPK
+            };
+
+            let TOKEN_ADDRESS = action.data.tokenAddress;
+            let tokenHolder = action.data.tokenHolder;
+            let TOKEN_RECEIVER = action.data.tokenReceiver;
+
+            let erc20TestTokenInstance = new Erc20TestToken(
+                conf.blockchainProperties.web3,
+                TOKEN_ADDRESS
+            );
+
+            try {
+                if (!TOKEN_ADDRESS) {
+                    const ALL_TOKENS = (100000 * 10**18).toLocaleString('fullwide', {useGrouping:false}) as any;
+
+                    TOKEN_ADDRESS = (await deployERC20TestToken(
+                        conf.blockchainProperties.web3,
+                        tokenHolder,
+                        ALL_TOKENS,
+                        adminPK
+                    )).contractAddress;     
+                    console.log(`Deployed token: ${TOKEN_ADDRESS}`);
+
+                    const testPrivateKey = tokenHolder === '0x7672fa3f8c04abbcbad14d896aad8bedece72d2b' ?
+                    '0x50397ee7580b44c966c3975f561efb7b58a54febedaa68a5dc482e52fb696ae7' : '';
+
+                    console.log('testPrivateKey', testPrivateKey);
+
+                    conf.blockchainProperties.activeUser = {
+                        address: tokenHolder,
+                        privateKey: testPrivateKey
+                    };
+
+                    erc20TestTokenInstance = new Erc20TestToken(
+                        conf.blockchainProperties.web3,
+                        TOKEN_ADDRESS
+                    );
+
+                    const certificateLogicAddress = conf.blockchainProperties.certificateLogicInstance.web3Contract._address;
+
+                    console.log('Certificate Logic Address: ', certificateLogicAddress);
+
+                    console.log(`token.approve(${certificateLogicAddress}, ${ALL_TOKENS})`);
+
+                    await erc20TestTokenInstance.approve(certificateLogicAddress, ALL_TOKENS, {
+                        privateKey: testPrivateKey
+                    });
+
+                    const allowance = await erc20TestTokenInstance.allowance(tokenHolder, certificateLogicAddress);
+
+                    console.log(`token.allowance(${tokenHolder}, ${certificateLogicAddress}) = ${allowance}`);
+                }
+
+                conf.blockchainProperties.activeUser = {
+                    address: adminAccount.address,
+                    privateKey: adminPK
+                };    
+                
+                console.log(`TOKEN HOLDER has: ${await erc20TestTokenInstance.balanceOf(tokenHolder)} tokens`);
+
+                await conf.blockchainProperties.certificateLogicInstance.setTokenProps(
+                    TOKEN_ADDRESS,
+                    tokenHolder,
+                    TOKEN_RECEIVER,
+                    { privateKey: adminPK }
+                );
+
+                conf.logger.info('Token props set');
+            } catch (e) {
+                conf.logger.error('Could not set token props\n' + e);
             }
             console.log('-----------------------------------------------------------');
             break;
@@ -228,6 +314,7 @@ export const certificateDemo = async (
                 const erc20TestAddress = (await deployERC20TestToken(
                     conf.blockchainProperties.web3,
                     action.data.testAccount,
+                    100000000,
                     adminPK
                 )).contractAddress;
 

@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "ew-asset-registry-lib": "energywebfoundation/ew-asset-registry-lib#sonnen",
-    "ew-erc-test-contracts": "0.3.0",
+    "ew-erc-test-contracts": "Kuzirashi/ew-erc-test-contracts#master",
     "ew-market-lib": "energywebfoundation/ew-market-lib#sonnen",
     "ew-user-registry-lib": "1.0.3-alpha.10",
     "ew-utils-general-lib": "1.0.2-alpha.4",
@@ -33,6 +33,7 @@
     "yaeti": "1.0.2"
   },
   "devDependencies": {
+    "@types/chai": "4.1.4",
     "@types/node": "9.6.48",
     "@types/web3": "1.0.14",
     "ganache-cli": "6.3.0",

@@ -13,8 +13,8 @@
                 "city": "Anytown",
                 "country": "USA",
                 "state": "Anystate",
-                "address": "0x48E233335976FB09c99C04b6232b3e5619DeeEFd",
-                "privateKey": "",
+                "address": "0x5b1b89a48c1fb9b6ef7fb77c453f2aaf4b156d45",
+                "privateKey": "0x622d56ab7f0e75ac133722cc065260a2792bf30ea3265415fe04f3a2dba7e1ac",
                 "rights": 12
             }
         },
@@ -55,8 +55,9 @@
         {
             "type": "CREATE_PRODUCING_ASSET",
             "data": {
-                "smartMeter": "0xdc055d463cA8216ec0ED02B8bf4AD214DcE51441",
-                "owner": "0x48E233335976FB09c99C04b6232b3e5619DeeEFd",
+                "smartMeter": "0x6cc53915dbec95a66deb7c709c800cac40ee55f9",
+                "smartMeterPK": "191c4b074672d9eda0ce576cfac79e44e320ffef5e3aadd55e000de57341d36c",
+                "owner": "0x5b1b89a48c1fb9b6ef7fb77c453f2aaf4b156d45",
                 "matcher": "0x2bda153cd94a10cc6584115eada312b27d4166d3",
                 "operationalSince": 1514764800,
                 "capacityWh": 54000,
@@ -89,6 +90,42 @@
             "type": "SET_MARKET_CONTRACT",
             "data": {
                 "assetId": 0
+            }
+        },
+        {
+            "type": "SET_TOKEN_PROPS",
+            "data": {
+                "tokenHolder": "0x7672fa3f8c04abbcbad14d896aad8bedece72d2b",
+                "tokenReceiver": "0x5b1b89a48c1fb9b6ef7fb77c453f2aaf4b156d45"
+            }
+        },
+        {	
+            "type": "CREATE_SUPPLY",	
+            "data": {	
+                "assetId": 0,	
+                "assetOwner": "0x5b1b89a48c1fb9b6ef7fb77c453f2aaf4b156d45",	
+                "assetOwnerPK": "0x622d56ab7f0e75ac133722cc065260a2792bf30ea3265415fe04f3a2dba7e1ac",	
+                "price": 10,
+                "currency": "EUR",	
+                "availableWh": 20,	
+                "timeframe": "hourly",	
+                "startTime": "1564151733000",	
+                "endTime": "1564161733000"	
+            }	
+        },	
+        {	
+            "type": "SAVE_SMARTMETER_READ_PRODUCING",	
+            "data": {	
+                "assetId": 0,	
+                "meterreading": 10,	
+                "smartMeter": "0x6cc53915dbec95a66deb7c709c800cac40ee55f9",	
+                "smartMeterPK": "0x191c4b074672d9eda0ce576cfac79e44e320ffef5e3aadd55e000de57341d36c",	
+                "filehash": "newMeterRead",	
+                "timestamp": "1560988800",	
+                "supplyId": 0,	
+                "averagePower": 77,	
+                "powerProfileURL": "Power profile URL",	
+                "powerProfileHash": "Power profile hash"	
             }
         }
     ]
