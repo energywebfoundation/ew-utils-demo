@@ -211,7 +211,11 @@ export const certificateDemo = async (
                     privateKey: adminPK
                 };    
                 
-                console.log(`TOKEN HOLDER has: ${await erc20TestTokenInstance.balanceOf(tokenHolder)} tokens`);
+                try {
+                    console.log(`TOKEN HOLDER has: ${await erc20TestTokenInstance.balanceOf(tokenHolder)} tokens`);
+                } catch (error) {
+                    console.log(`Seems Token is not deployed on this chain.`);
+                }
 
                 await conf.blockchainProperties.certificateLogicInstance.setTokenProps(
                     TOKEN_ADDRESS,
