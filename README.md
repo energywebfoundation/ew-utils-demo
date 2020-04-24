@@ -2,6 +2,11 @@
 
 This repository is used to deploy all the contracts for the Origin project of the Energy Web Foundation.
 
+## Requirements
+
+- NodeJS v10
+- NPM
+
 ## How-to
 - `npm install` - Install the dependencies
 - `npm run start-ganache` - Starts a local blockchain instance
@@ -11,7 +16,7 @@ This repository is used to deploy all the contracts for the Origin project of th
 This will deploy all the contracts to a local Ganache instance and a local test backend.
 
 ## Interacting with the contracts
-After they have been deployed, you can use the [EW Origin UI](https://github.com/energywebfoundation/ew-origin-ui) to interact with the contracts through a user-friendly interface.
+After they have been deployed, you can use the [EW Origin UI](https://github.com/energywebfoundation/ew-origin-ui/tree/sonnen) to interact with the contracts through a user-friendly interface. Please read the instructions there and use `USER_INTERFACE_URL/ORIGIN_CONTRACT_ADDRESS` to access the demo.
 
 ## Introduction
 
